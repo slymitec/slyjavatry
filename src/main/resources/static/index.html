@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>SLY System</title>
+    <script type="application/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.js"></script>
+</head>
+
+<body>
+<button onclick="doo()" style="width: 200px; height: 40px">操作</button>
+<div id="message"></div>
+</body>
+
+<script type="text/javascript">
+    function doo() {
+        let p = {
+            type: "java.util.HashSet",
+            value: ["00000000-c92a-4d25-8b46-2c870d8e214f", "00000000-9c2b-4ed9-b0d0-0bcffd462a04"]
+        }
+
+
+        $.ajax({
+            url: "/T20250706.action",
+            dataType: "json",
+            type: "post",
+            data: p,
+            success: function (res) {
+                setMessageInnerHTML(res.type)
+                setMessageInnerHTML(res.value)
+            },
+            error: function () {
+                setMessageInnerHTML("error!")
+            },
+        });
+    };
+
+    function setMessageInnerHTML(innerHTML) {
+        const text = document.getElementById('message').innerHTML;
+        document.getElementById('message').innerHTML = innerHTML + "<br />" + text;
+    }
+</script>
+</html>

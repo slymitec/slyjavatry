@@ -1,0 +1,45 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  task:
+    execution:
+      pool:
+        core-size: 16
+        keep-alive: 4s
+  ai:
+    deepseek:
+      api-key: sk-bd8302e19007432bb365c4d03f3e6d77
+      base-url: https://api.deepseek.com
+      chat:
+        options:
+          model: deepseek-v4-flash
+          temperature: 0.9
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+  redis:
+    redisson:
+      config: |
+        codec: !<org.redisson.codec.Kryo5Codec> {}
+        singleServerConfig:
+          address: "redis://10.28.0.16:6379"
+
+  #org:
+  #  apache:
+  #    pekko:
+  #      stream:
+  #        connectors:
+  #          spring:
+  #            web:
+  #              actor-system-name: testactor;
+
+dapr:
+  client:
+    http-endpoint: http://10.28.0.16:3500
+    grpc-endpoint: 10.28.0.16:50001
