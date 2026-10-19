@@ -1,1 +1,1 @@
-rootProject.name = "slyjavatry"
+rootProject.name = "javatry"
