@@ -1,6 +1,7 @@
 build/
 out/
 gradle/
+ai.yaml
 
 .gradle
 gradlew

@@ -4,19 +4,15 @@ server:
     uri-encoding: UTF-8
 
 spring:
+  config:
+    import: classpath:ai.yml
+
   task:
     execution:
       pool:
         core-size: 16
         keep-alive: 4s
-  ai:
-    deepseek:
-      api-key: sk-bd8302e19007432bb365c4d03f3e6d77
-      base-url: https://api.deepseek.com
-      chat:
-        options:
-          model: deepseek-v4-flash
-          temperature: 0.9
+
   servlet:
     encoding:
       charset: UTF-8
