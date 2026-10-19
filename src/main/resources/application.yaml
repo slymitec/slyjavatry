@@ -5,7 +5,7 @@ server:
 
 spring:
   config:
-    import: classpath:ai.yml
+    import: classpath:ai.yaml
 
   task:
     execution:
