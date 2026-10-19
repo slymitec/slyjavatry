@@ -41,7 +41,6 @@ public class JobController {
         return "success";
     }
 
-
     @PostMapping("/job/{jobName}")
     public Mono<ResponseEntity<Void>> handleJobCallback(@PathVariable("jobName") String jobName, @RequestBody(required = false) byte[] payload) {
 
