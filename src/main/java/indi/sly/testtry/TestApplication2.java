@@ -1,8 +1,8 @@
 package indi.sly.testtry;
 
-import indi.sly.testtry.t20260915.ITestActor;
 import indi.sly.testtry.t20260915.TextRecord;
-import indi.sly.testtry.t20260915.common.ClientResponseRecord;
+import indi.sly.testtry.t20261005.ITestActor;
+import indi.sly.testtry.t20261005.TestDTO;
 import io.dapr.actors.ActorId;
 import io.dapr.actors.client.ActorClient;
 import io.dapr.actors.client.ActorProxyBuilder;
@@ -23,7 +23,7 @@ public class TestApplication2 {
     static void main(String[] args) {
         Map<Property<?>, String> properties = Map.of(Properties.HTTP_ENDPOINT, "http://10.28.0.16:3501", Properties.GRPC_ENDPOINT, "10.28.0.16:50002");
 
-        invokeTest(properties);
+        actorTest(properties);
     }
 
     static void invokeTest(Map<Property<?>, String> properties) {
@@ -64,14 +64,12 @@ public class TestApplication2 {
 
             ITestActor actor = builder.build(actorId);
 
-            ClientResponseRecord clientResponse = actor.call(-1).block();
+            TestDTO testDTO = new TestDTO();
+            testDTO.setText("test");
 
-            if (clientResponse != null) {
-                System.out.println(clientResponse.type());
-                System.out.println(clientResponse.value());
-            } else {
-                System.out.println("null");
-            }
+            String result = actor.test(testDTO);
+
+            System.out.println(result);
         } catch (DaprException e) {
             System.err.println(e.getMessage());
         }
