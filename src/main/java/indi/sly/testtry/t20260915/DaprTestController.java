@@ -18,6 +18,14 @@ public class DaprTestController {
 
         State<TextRecord> block = daprClient.getState("statestore", "name", TextRecord.class).block();
 
+        if (block != null) {
+            TextRecord value = block.getValue();
+
+            System.out.println(value.text());
+        } else {
+            System.out.println("null");
+        }
+
         return name;
     }
 
