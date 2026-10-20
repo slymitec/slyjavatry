@@ -2,6 +2,7 @@ package indi.sly.testtry.t20261017;
 
 import io.dapr.client.DaprClient;
 import io.dapr.client.domain.ConstantFailurePolicy;
+import io.dapr.client.domain.JobSchedule;
 import io.dapr.client.domain.ScheduleJobRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,7 @@ public class JobController {
         request.setOverwrite(true);
         request.setFailurePolicy(policy);
         request.setTtl(now.plus(1, ChronoUnit.HOURS));
+        request.setSchedule(JobSchedule.hourly());
         request.setData(text.getBytes());
 
         daprClient.scheduleJob(request).block();
