@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main {
+public class JSONMain {
     @SuppressWarnings("unchecked")
     static void main() throws Exception {
         SimpleModule module = new SimpleModule();
@@ -18,7 +18,7 @@ public class Main {
         JsonMapper SERIALIZATION_JSON = JsonMapper.builder().addModule(module).build();
 
 
-        Main main = new Main();
+        JSONMain main = new JSONMain();
 
         Map<String, String> doo1 = main.getDoo();
 
@@ -29,7 +29,7 @@ public class Main {
         System.out.println(s);
 
 
-        Method getDoo = Main.class.getMethod("getDoo");
+        Method getDoo = JSONMain.class.getMethod("getDoo");
 
         Map<String, String> map = (Map<String, String>) SERIALIZATION_JSON.readValue(s, getDoo.getReturnType());
 
